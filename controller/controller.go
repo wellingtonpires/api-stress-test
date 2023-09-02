@@ -35,7 +35,7 @@ func GetCountPerson(w http.ResponseWriter, r *http.Request) {
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	models.InsertData("hahaaha")
+	models.InsertData("a")
 	//var p Pessoa
 	//err := json.NewDecoder(r.Body).Decode(&p)
 	//if err != nil {
