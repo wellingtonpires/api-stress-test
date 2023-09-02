@@ -1,11 +1,12 @@
 package controller
 
 import (
-	//"encoding/json"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
-	"github.com/wellingtonpires/api-stress-test/models"
+
+	"github.com/wellingtonpires/api-stress-test/postgresgo"
 )
 
 type Pessoa struct {
@@ -35,13 +36,12 @@ func GetCountPerson(w http.ResponseWriter, r *http.Request) {
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	models.InsertData("a")
-	//var p Pessoa
-	//err := json.NewDecoder(r.Body).Decode(&p)
-	//if err != nil {
-	//	w.WriteHeader(http.StatusUnprocessableEntity)
-	//	return
-	//}
+	var p Pessoa
+	err := json.NewDecoder(r.Body).Decode(&p)
+	if err != nil {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		return
+	}
 	w.WriteHeader(http.StatusCreated)
-	//fmt.Fprintf(w, "%+v", p)
+	postgresgo.InsertData(p.Apelido, p.Nome, p.Nascimento, p.Stack)
 }
