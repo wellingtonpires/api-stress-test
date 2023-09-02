@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"encoding/json"
+	//"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
+	"github.com/wellingtonpires/api-stress-test/models"
 )
 
 type Pessoa struct {
@@ -34,12 +35,13 @@ func GetCountPerson(w http.ResponseWriter, r *http.Request) {
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	var p Pessoa
-	err := json.NewDecoder(r.Body).Decode(&p)
-	if err != nil {
-		w.WriteHeader(http.StatusUnprocessableEntity)
-		return
-	}
+	models.InsertData("hahaaha")
+	//var p Pessoa
+	//err := json.NewDecoder(r.Body).Decode(&p)
+	//if err != nil {
+	//	w.WriteHeader(http.StatusUnprocessableEntity)
+	//	return
+	//}
 	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintf(w, "%+v", p)
+	//fmt.Fprintf(w, "%+v", p)
 }
